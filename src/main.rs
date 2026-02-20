@@ -52,9 +52,9 @@ fn generate_left_side() {
 
 fn format_path(path_str: String, bg_color: Color, fg_color: Color) -> String {
     format!("{}{}{}{}",
-            "█".color(bg_color),
+            " ".on_color(bg_color),
             path_str.on_color(bg_color).color(fg_color),
-            "█".color(bg_color),
+            " ".on_color(bg_color),
             "".color(bg_color)
     )
 }
