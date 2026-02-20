@@ -1,4 +1,5 @@
 use std::env;
+use colored::{Color, Colorize};
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -44,9 +45,18 @@ fn generate_left_side() {
             }
         }
 
-        // Use ZSH prompt escapes for colors: %F{blue} starts blue, %f resets it
-        print!("%F{{blue}}{}%f", path_str);
+        //print!("%F{{blue}}{}%f", path_str);
+        print!("{}", format_path(path_str, Color::BrightBlue, Color::BrightWhite))
     }
+}
+
+fn format_path(path_str: String, bg_color: Color, fg_color: Color) -> String {
+    format!("{}{}{}{}",
+            "█".color(bg_color),
+            path_str.on_color(bg_color).color(fg_color),
+            "█".color(bg_color),
+            "".color(bg_color)
+    )
 }
 
 fn generate_right_side() {
